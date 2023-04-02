@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import clsx from 'clsx'
 
 import Button from './button'
@@ -8,15 +8,15 @@ import IconButton from './iconButton'
 
 import styles from './layout.module.scss'
 import utilStyles from '../styles/utils.module.css'
-import joystick from '../public/images/joystick.png'
+
+import globalData from '/pages/api/global.json'
 
 const name = 'Jinane'
 export const siteTitle = 'A Nice Website - Jinane Ben Salem'
 
-export default function Layout({ children, data, view, onNavigate }) {
+export default function Layout({ children, view, onNavigate }) {
   const [menuActive, setMenuActive] = useState(null)
-
-  if(!data) return <></>
+  const content = globalData.data.attributes
 
   useEffect(() => {
     function handleKeyDown(e) {
@@ -169,16 +169,16 @@ export default function Layout({ children, data, view, onNavigate }) {
               <IconButton icon="mail" onClick={() => handleMenuClick('Contact')} />
             </li>
             <li>
-              <IconButton icon="discord" externalTo={data.attributes.discord} />
+              <IconButton icon="discord" externalTo={content.discord} />
             </li>
             <li>
-              <IconButton icon="linkedin" externalTo={data.attributes.linkedin} />
+              <IconButton icon="linkedin" externalTo={content.linkedin} />
             </li>
           </ul>
 
           <div className={styles.Footer_separator}></div>
 
-          <p className={`${styles.Footer_credits} ${utilStyles.smallTypo}`}>{data.attributes.credits}</p>
+          <p className={`${styles.Footer_credits} ${utilStyles.smallTypo}`}>{content.credits}</p>
         </footer>
 
         <div className={clsx({
@@ -227,7 +227,7 @@ export default function Layout({ children, data, view, onNavigate }) {
             {/* LEFT */}
             <path onClick={goLeft} cursor={view === 'Home' || view === 'Portfolio' ? 'pointer' : 'initial'} d="M22.5823 73.1773C21.3682 72.3887 21.3682 70.6113 22.5823 69.8227L34.9106 61.8153C36.2411 60.9511 38 61.906 38 63.4925V79.5075C38 81.094 36.2411 82.0489 34.9106 81.1847L22.5823 73.1773Z" fill="#EAEBEF" fillOpacity={view === 'Home' || view === 'Portfolio' ? '1' : '0.1'}/>
             {/* RIGHT */}
-            <path onClick={goRight} cursor={view === 'Services' || view === 'Portfolio' ? 'pointer' : 'initial'} d="M128.418 69.8227C129.632 70.6113 129.632 72.3887 128.418 73.1773L116.089 81.1847C114.759 82.0489 113 81.094 113 79.5075V63.4925C113 61.906 114.759 60.9511 116.089 61.8153L128.418 69.8227Z" fill="#EAEBEF" fillOpacity={view === 'Home' || view === 'Services' ? '1' : '0.1'}/>
+            <path onClick={goRight} cursor={view === 'Services' || view === 'Home' ? 'pointer' : 'initial'} d="M128.418 69.8227C129.632 70.6113 129.632 72.3887 128.418 73.1773L116.089 81.1847C114.759 82.0489 113 81.094 113 79.5075V63.4925C113 61.906 114.759 60.9511 116.089 61.8153L128.418 69.8227Z" fill="#EAEBEF" fillOpacity={view === 'Home' || view === 'Services' ? '1' : '0.1'}/>
             {/* TOP */}
             <path onClick={goUp} cursor={view === 'Home' || view === 'Contact' ? 'pointer' : 'initial'} d="M73.8227 20.5823C74.6113 19.3682 76.3887 19.3682 77.1773 20.5823L85.1847 32.9106C86.0489 34.2411 85.094 36 83.5075 36H67.4925C65.906 36 64.9511 34.2411 65.8153 32.9106L73.8227 20.5823Z" fill="#EAEBEF" fillOpacity={view === 'Home' || view === 'Contact' ? '1' : '0.1'}/>
             {/* BOTTOM */}

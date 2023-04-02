@@ -6,7 +6,15 @@ import styles from './contact.module.css'
 import utilStyles from '../styles/utils.module.css'
 import clsx from 'clsx'
 
-export default function Contact({ content }) {
+import contactData from '/pages/api/contact-page.json'
+
+const encode = (data) => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
+
+export default function Contact() {
   const formRef = useRef(null)
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
@@ -15,6 +23,8 @@ export default function Contact({ content }) {
   const [error, setError] = useState(null)
   const [sent, setSent] = useState(false)
   const mailRegex = /(\w+\.?|-?\w+?)+@\w+\.?-?\w+?(\.\w{2,3})+/g
+
+  const content = contactData.data.attributes
 
   const handleSend = (e) => {
     e.preventDefault()
@@ -34,16 +44,26 @@ export default function Contact({ content }) {
     }
 
     // Send message
-    // formRef.current.submit()
-    setSent(true)
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact", email, subject, message})
+    })
+      .then(() => {
+        setSent(true)
     
-    setTimeout(() => {
-      setButtonText('✨Merci !✨')
-    }, 300)
-    setError(null)
-    setEmail('')
-    setSubject('')
-    setMessage('')
+        setTimeout(() => {
+          setButtonText('✨Merci !✨')
+        }, 300)
+        setError(null)
+        setEmail('')
+        setSubject('')
+        setMessage('')
+      })
+      .catch(error => {
+        setError('Something happened...')
+        console.log(error)
+      })
   }
 
   return (
@@ -54,31 +74,32 @@ export default function Contact({ content }) {
           
           {/* HEADING */}
           <div className={styles.Heading}>
-            <h1 className={utilStyles.hugeHeading}>{content.attributes?.title}</h1>
-            <p className={utilStyles.textTypo}>{content.attributes.description}</p>
+            <h1 className={utilStyles.hugeHeading}>{content?.title}</h1>
+            <p className={utilStyles.textTypo}>{content.description}</p>
           </div>
 
           {/* FORM */}
           <form 
             ref={formRef}
             method='POST'
+            data-netlify="true"
             action='/'
             name='contact'
-            data-netlify="true" 
-            netlify-honeypot="bot-field" 
+            netlify-honeypot="bot-field"
             className={clsx({
               [styles.Form]: true,
               [styles.Form__sent]: sent
             })}
+            onSubmit={handleSend}
           >
-            <input type="hidden" name="contactform" value="contact" />
+            <input type="hidden" name="form-name" value="contact" />
       
             <Input hasError={error != null && !email.match(mailRegex)} value={email} name="email" placeholder="Ton email*" type="email" onChange={(e) => setEmail(e.target.value)}/>
             <Input hasError={error != null && subject.length<3}value={subject} outlined name="subject" placeholder="Sujet du message*" type="text" onChange={(e) => setSubject(e.target.value)}/>
             <Input hasError={error != null && message.length<3} value={message} outlined textArea name="message" placeholder="Ton message*" type="text" onChange={(e) => setMessage(e.target.value)}/>
           
             <span className={styles.Form_error}>{error}</span>
-            <Button primary icon={'send'} iconHeight={30} iconWidth={30} reversed onClick={handleSend} fill>{buttonText}</Button>
+            <Button type="submit" primary icon={'send'} iconHeight={30} iconWidth={30} reversed fill>{buttonText}</Button>
           </form>
         </div>
       </div>

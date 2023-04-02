@@ -5,8 +5,12 @@ import { getImagePath } from '../lib/api'
 import styles from './home.module.css'
 import utilStyles from '../styles/utils.module.css'
 
-export default function Home({ content, onNavigate }) {
-  const stack = content.attributes.stack.data
+import homeData from '/pages/api/home-page.json'
+
+export default function Home({ onNavigate }) {
+  const content = homeData.data.attributes
+  const stack = content.stack.data
+
   return (
     <section className={`${utilStyles.Cell_home}`}>
       <div className={utilStyles.Cell_content}>
@@ -15,8 +19,8 @@ export default function Home({ content, onNavigate }) {
 
           {/* HEADING */}
           <div className={styles.Heading}>
-            <h1 className={utilStyles.hugeHeading}>{content.attributes.title}</h1>
-            <h2 className={utilStyles.hugeHeadingOutline}>{content.attributes.subtitle}</h2>
+            <h1 className={utilStyles.hugeHeading}>{content.title}</h1>
+            <h2 className={utilStyles.hugeHeadingOutline}>{content.subtitle}</h2>
             
             {/* CTA */}
             <div className={`${styles.Cta}`}>

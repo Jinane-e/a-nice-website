@@ -1,12 +1,15 @@
-import styles from './portfolio.module.css'
-import utilStyles from '../styles/utils.module.css'
 import Button from './button'
 import Image from 'next/image'
-import { getImagePath } from '../lib/api'
 
+import styles from './portfolio.module.css'
+import utilStyles from '../styles/utils.module.css'
 
-export default function Portfolio({ content, onNavigate }) {
-  const projects = content.attributes.projects.data
+import aboutData from '/pages/api/portfolio-page.json'
+import { CLOUDINARY_URL } from '../lib/cloudinary'
+
+export default function Portfolio({ onNavigate }) {
+  const content = aboutData.data.attributes
+  const projects = content.projects.data
 
   return (
     <section className={utilStyles.Cell_portfolio}>
@@ -17,8 +20,8 @@ export default function Portfolio({ content, onNavigate }) {
 
           {/* HEADING */}
           <article className={styles.Heading}>
-            <h1 className={utilStyles.hugeHeading}>{content.attributes.title}</h1>
-            <p className={utilStyles.textTypo}>{content.attributes.description}</p>
+            <h1 className={utilStyles.hugeHeading}>{content.title}</h1>
+            <p className={utilStyles.textTypo}>{content.description}</p>
           </article>
 
           {/* FOOTER & CTA */}
@@ -34,20 +37,24 @@ export default function Portfolio({ content, onNavigate }) {
             <div className={styles.Gallery_separator}></div>
 
             <ul className={styles.Gallery_list}>
-              {projects?.map(project => 
-                <li key={project.id} className={styles.Gallery_cell}>
-                  {project.attributes.link ?
-                    <a href={project.attributes.link} target="_blank">
-                      <h2 suppressHydrationWarning className={utilStyles.smallTypo}>{project.attributes.legend}</h2>
-                      <Image src={getImagePath(project.attributes.image?.data.attributes.url)} fill alt="screenshot" className={styles.Gallery_image} />
-                    </a>
-                    : <>
-                      <h2 suppressHydrationWarning className={utilStyles.smallTypo}>{project.attributes.legend}</h2>
-                      <Image src={getImagePath(project.attributes.image?.data.attributes.url)} fill alt="screenshot" className={styles.Gallery_image} />
-                    </>
-                  }
-                  
-                </li>
+              {projects?.map(project => {
+                const image = CLOUDINARY_URL + project.attributes.image?.data.attributes.name
+
+                return (
+                  <li key={project.id} className={styles.Gallery_cell}>
+                    {project.attributes.link ?
+                      <a href={project.attributes.link} target="_blank">
+                        <h2 suppressHydrationWarning className={utilStyles.smallTypo}>{project.attributes.legend}</h2>
+                        <Image src={image} fill alt="screenshot" className={styles.Gallery_image} />
+                      </a>
+                      : <>
+                        <h2 suppressHydrationWarning className={utilStyles.smallTypo}>{project.attributes.legend}</h2>
+                        <Image src={image} fill alt="screenshot" className={styles.Gallery_image} />
+                      </>
+                    }
+                  </li>
+                )
+              }
               )}
               
             </ul>

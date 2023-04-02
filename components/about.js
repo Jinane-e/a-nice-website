@@ -1,13 +1,15 @@
-import styles from './about.module.css'
-import utilStyles from '../styles/utils.module.css'
 import Image from 'next/image'
 import Button from './button'
-import { getImagePath } from '../lib/api'
 
+import styles from './about.module.css'
+import utilStyles from '../styles/utils.module.css'
 
-export default function About({ content, onNavigate }) {
-  const experiences = content.attributes.experiences.data?.reverse()
-  const picture = content.attributes.picture
+import aboutData from '/pages/api/about-page.json'
+
+export default function About({ onNavigate }) {
+  const content = aboutData.data.attributes
+  const experiences = content.experiences.data?.reverse()
+  const picture = content.picture
 
   return (
     <section className={`${utilStyles.Cell_about}`}>
@@ -18,19 +20,19 @@ export default function About({ content, onNavigate }) {
           
           {/* HEADING */}
           <article className={styles.Heading}>
-            <h1 className={utilStyles.mediumHeading}>{content.attributes.title}</h1>
+            <h1 className={utilStyles.mediumHeading}>{content.title}</h1>
             <Image src={`https://res.cloudinary.com/dzwcje2w1/image/upload/${picture?.data.attributes.name}`} alt='me' fill className={styles.Heading_image} />
           </article>
 
           {/* LEGEND BELOW PICTURE */}
           <article className={styles.Legend}>
-            <div className={utilStyles.textTypo} dangerouslySetInnerHTML={{ __html: content.attributes.legend }}></div>
+            <div className={utilStyles.textTypo} dangerouslySetInnerHTML={{ __html: content.legend }}></div>
           </article>
 
           {/* DESCRIPTION */}
           <article className={styles.Description}>
-            <h2 className={utilStyles.bigHeading}>{content.attributes.descriptionTitle}</h2>
-            <div className={utilStyles.textTypo} dangerouslySetInnerHTML={{ __html: content.attributes.descriptionText }}></div>
+            <h2 className={utilStyles.bigHeading}>{content.descriptionTitle}</h2>
+            <div className={utilStyles.textTypo} dangerouslySetInnerHTML={{ __html: content.descriptionText }}></div>
             
             <div className={styles.Cta}>
               <Button primary icon="chevron-right" iconWidth={7} onClick={() => onNavigate('Services')}>Mes&nbsp;Services</Button>

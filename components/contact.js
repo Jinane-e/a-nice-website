@@ -34,7 +34,7 @@ export default function Contact({ content }) {
     }
 
     // Send message
-    form.current.submit()
+    // formRef.current.submit()
     setSent(true)
     
     setTimeout(() => {

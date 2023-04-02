@@ -14,14 +14,16 @@
   grid-row: 1;
   grid-column: 1;
 
-  width: clamp(200px, 30vw, 400px);
+  width: clamp(200px, 100%, 400px);
   margin: auto;
   position: relative;
 }
 
 .Heading_image {
   object-fit: contain;
+  object-position: top;
   width: 100% !important;
+  aspect-ratio: 1;
   position: relative !important;
   height: unset !important;
 }
@@ -161,7 +163,7 @@
   .Legend {
     order: 2;
     margin: 0;
-    padding: 0 20px;
+    text-align: left;
   }
 
   .Legend p {

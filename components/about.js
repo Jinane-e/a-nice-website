@@ -7,6 +7,7 @@ import { getImagePath } from '../lib/api'
 
 export default function About({ content, onNavigate }) {
   const experiences = content.attributes.experiences.data?.reverse()
+  const picture = content.attributes.picture
 
   return (
     <section className={`${utilStyles.Cell_about}`}>
@@ -18,7 +19,7 @@ export default function About({ content, onNavigate }) {
           {/* HEADING */}
           <article className={styles.Heading}>
             <h1 className={utilStyles.mediumHeading}>{content.attributes.title}</h1>
-            <Image src={getImagePath(content.attributes.picture?.data.attributes.url)} alt='me' fill className={styles.Heading_image} />
+            <Image src={`https://res.cloudinary.com/dzwcje2w1/image/upload/${picture?.data.attributes.name}`} alt='me' fill className={styles.Heading_image} />
           </article>
 
           {/* LEGEND BELOW PICTURE */}

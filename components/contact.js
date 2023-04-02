@@ -15,7 +15,6 @@ const encode = (data) => {
 }
 
 export default function Contact() {
-  const formRef = useRef(null)
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
@@ -28,6 +27,7 @@ export default function Contact() {
 
   const handleSend = (e) => {
     e.preventDefault()
+    console.log(e)
 
     if(!email) {
       setError('❌N\'oublie pas ton email !❌')
@@ -79,11 +79,8 @@ export default function Contact() {
           </div>
 
           {/* FORM */}
-          <form 
-            ref={formRef}
-            method='POST'
+          <form
             data-netlify="true"
-            action='/'
             name='contact'
             netlify-honeypot="bot-field"
             className={clsx({
@@ -99,7 +96,7 @@ export default function Contact() {
             <Input hasError={error != null && message.length<3} value={message} outlined textArea name="message" placeholder="Ton message*" type="text" onChange={(e) => setMessage(e.target.value)}/>
           
             <span className={styles.Form_error}>{error}</span>
-            <Button type="submit" primary icon={'send'} iconHeight={30} iconWidth={30} reversed fill onClick={() => {}}>{buttonText}</Button>
+            <Button type="submit" primary icon={'send'} iconHeight={30} iconWidth={30} reversed fill onClick={handleSend}>{buttonText}</Button>
           </form>
         </div>
       </div>

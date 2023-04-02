@@ -26,7 +26,7 @@ export default function Portfolio({ onNavigate }) {
 
           {/* FOOTER & CTA */}
           <article className={styles.Footer}>
-            <p className={utilStyles.textTypo}>Besoin d’un site vitrine, d’une application ou d’un autre service ?<br/> <br/>Contacte-moi pour en parler</p>
+            <p className={utilStyles.textTypo}>Besoin d’un site vitrine, d’une application ou d’un autre service&nbsp;?<br/> <br/>Contacte-moi pour en parler</p>
             <Button fill primary icon="chevron-right" iconWidth={6} iconHeight={12} onClick={() => onNavigate('Contact')}>Contacte-moi</Button>
           </article>
 

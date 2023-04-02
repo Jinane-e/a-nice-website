@@ -99,7 +99,7 @@ export default function Contact() {
             <Input hasError={error != null && message.length<3} value={message} outlined textArea name="message" placeholder="Ton message*" type="text" onChange={(e) => setMessage(e.target.value)}/>
           
             <span className={styles.Form_error}>{error}</span>
-            <Button type="submit" primary icon={'send'} iconHeight={30} iconWidth={30} reversed fill>{buttonText}</Button>
+            <Button type="submit" primary icon={'send'} iconHeight={30} iconWidth={30} reversed fill onClick={() => {}}>{buttonText}</Button>
           </form>
         </div>
       </div>

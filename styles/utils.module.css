@@ -1,0 +1,262 @@
+/* **************** */
+/* ----- GRID ----- */
+/* **************** */
+
+.Grid {
+  display: grid;
+  grid-template-columns: repeat(5, 100vw);
+  grid-template-rows: repeat(5, 100vh);
+
+  position: absolute;
+  transition: transform 1s ease;
+
+  /* Default position is centered */
+  left: -200vw;
+  top: -200vh;
+}
+
+/* Focus top cell */
+.Grid__1x3 {
+  transform: translateY(200vh);
+}
+
+/* Focus bottom cell */
+.Grid__5x3 {
+  transform: translateY(-200vh);
+}
+
+/* Focus center cell */
+.Grid__3x3 {
+  transform: translate(0);
+}
+
+/* Focus left cell */
+.Grid__3x1 {
+  transform: translateX(200vw);
+}
+
+/* Focus right cell */
+.Grid__3x5 {
+  transform: translateX(-200vw);
+}
+
+.Cell_content {
+  height: 100vh;
+  padding-top: 86px;
+  padding-left: 86px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.Cell_home {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.Cell_about {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.Cell_services {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.Cell_portfolio {
+  grid-column: 5;
+  grid-row: 3;
+}
+
+.Cell_contact {
+  grid-column: 3;
+  grid-row: 5;
+}
+
+@media screen and (max-width: 600px) {
+  
+  .Cell_content {
+    padding: 20px;
+  }  
+}
+
+/* **************** */
+/* ----- TYPO ----- */
+/* **************** */
+
+/* Huge heading */
+.hugeHeading {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-size: 4rem; /* 48px */
+  font-weight: bold;
+  line-height: 59px;
+  letter-spacing: 1px;
+  margin: 1rem 0;
+  text-transform: uppercase;
+}
+
+.hugeHeadingOutline {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 59px;
+  margin: 1rem 0;
+  text-transform: uppercase;
+  color: var(--neutral-900);
+
+  text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
+  /* background: var(--pastel-gradient); */
+  background: linear-gradient(to right, var(--primary-500), var(--primary-400), var(--pastel-mint), var(--primary-400), var(--primary-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 10s linear infinite;
+  background-size: 200% auto;
+
+  /* text-shadow: -0.3px 0.3px 0 var(--neutral-100),
+    0.3px 0.3px 0 var(--neutral-100),
+    0.3px -0.3px 0 var(--neutral-100),
+    -0.3px -0.3px 0 var(--neutral-100); */
+}
+
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Big heading */
+.bigHeading {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-size: 2rem; /* 36px */
+  font-weight: 400;
+  line-height: 44px;
+  margin: 1rem 0;
+}
+
+/* Medium heading */
+.mediumHeading {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-size: 1.5rem; /* 32px */
+  font-weight: 300;
+  line-height: 30px;
+}
+
+/* Bold heading */
+.boldHeading {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-size: 1rem; /* 24px */
+  font-weight: 700;
+  line-height: 29px;
+}
+
+/* Special heading */
+.specialHeading {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-size: 2rem; /* 24px */
+  font-weight: 700;
+  line-height: 29px;
+}
+
+/* Quote typo */
+.quoteTypo {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-size: 1rem; /* 24px */
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+/* Link typo */
+.linkTypo {
+  font-family: 'Montserrat';
+  font-size: 0.9rem; /* 16px */
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+}
+
+/* Text typo */
+.textTypo {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-size: 1rem; /* 15px */
+  font-weight: 300;
+  line-height: 20px;
+}
+
+/* Small typo */
+.smallTypo {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-size: 0.6rem; /* 11px */
+  font-weight: 300;
+  line-height: 13px;
+}
+
+@media screen and (max-width: 600px) {
+  
+  .hugeHeading, .hugeHeadingOutline {
+    font-size: 3rem;
+    line-height: 44px;
+    margin-bottom: 0;
+  }
+
+  .bigHeading {
+    font-size: 1.6rem;
+    line-height: 30px;
+  }
+
+  .specialHeading {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 29px;
+  }
+
+  .textTypo {
+    font-weight: 200;
+    line-height: 20px;
+  }
+}
+
+/* **************** */
+/* -- RESPONSIVE -- */
+/* **************** */
+
+.max600 {
+  display: none !important;
+}
+
+.min600 {
+  display: flex !important;
+}
+
+.min700 {
+  display: flex !important;
+}
+
+@media screen and (max-width: 600px) {
+  
+  .max600 {
+    display: flex !important;
+  }
+
+  .min600 {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 710px) {
+
+  .min700 {
+    display: none !important;
+  }
+}

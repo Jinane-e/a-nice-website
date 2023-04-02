@@ -1,0 +1,100 @@
+.Container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 50px;
+
+  height: initial;
+  width: 100%;
+  padding: 15vh 5vw 10px;
+}
+
+.Heading {
+  text-align: right;
+  width: clamp(300px, 70vw, 450px);
+  margin: 0 auto;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  width: clamp(300px, 38vw, 500px);
+  margin: 30px auto;
+}
+
+.Form_error {
+  box-sizing: content-box;
+  text-align: center;
+  min-height: 20px;
+  padding: 10px;
+  text-transform: uppercase;
+  composes: linkTypo from '../styles/utils.module.css';
+  text-shadow: 2px 2px var(--primary-400);
+}
+
+.Form button {
+  margin-top: 20px;
+  transition-property: box-shadow, background-color, transform;
+  transition-duration: 0.5s;
+}
+
+.Form button:hover, .Form button:hover:active {
+  background-color: var(--active-blue);
+  box-shadow: 0px 0px 50px 1px var(--primary-400);
+}
+
+.Form__sent button * {
+  font-weight: bold;
+  transition: all 0.4s;
+}
+
+.Form__sent button:hover {
+  box-shadow: none;
+}
+
+.Form__sent button img {
+  animation: send 1.4s ease-out both;
+}
+
+.Form__sent button span span {
+  position: relative;
+  left: -20px;
+  animation: text 1.4s;
+}
+
+@keyframes send {
+  0% {
+    transform: translateX(0);
+  }
+  90% {
+    transform: scale(1) translateX(300px);
+  }
+  100% {
+    transform: scale(0) translateX(300px);
+  }
+}
+
+@keyframes text {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(-30px);
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Form {
+    width: clamp(300px, 88vw, 500px);
+  }
+}

@@ -1,0 +1,209 @@
+.Container {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 10px;
+  padding-top: 15vh;
+}
+
+/* **************** */
+/* --- HEADING ---- */
+/* **************** */
+
+.Heading {
+  grid-row: 1;
+  grid-column: 1;
+
+  width: clamp(200px, 30vw, 400px);
+  margin: auto;
+  position: relative;
+}
+
+.Heading_image {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+}
+
+/* **************** */
+/* ---- LEGEND ---- */
+/* **************** */
+
+.Legend {
+  grid-row: 2;
+  grid-column: 1;
+
+  width: clamp(200px, 40vw, 800px);
+  margin: 0 auto;
+  text-align: center;
+  z-index: 1;
+}
+
+.Legend p {
+  position: relative;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+/* **************** */
+/* -- DESCRIPTION - */
+/* **************** */
+
+.Description {
+  grid-row: 1;
+  grid-column: 3;
+
+  width: clamp(200px,  80%, 400px);
+  margin-left: clamp(0px, 3vw, 100px);
+}
+
+.Description p {  
+  text-align: justify;
+}
+
+.Cta {
+  margin: 50px 0 0;
+}
+
+/* **************** */
+/* --- TIMELINE --- */
+/* **************** */
+
+.Timeline {
+  grid-area: 2/1/span 1/span 3;
+
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  
+  padding: 100px 10px 0;
+  width: clamp(100px, 100%, 1000px);
+  z-index: 0;
+  margin: auto;
+}
+
+.Timeline_separator {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: calc(100%);
+  background-color: var(--neutral-10);
+}
+
+.Timeline_list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: flex-end;
+
+  text-align: right;
+  margin-top: 80px;
+}
+
+.Timeline_cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-height: 200px;
+  width: 50%;
+  padding: 10px 20px;
+}
+
+.Timeline_cell:nth-child(even) {
+  align-items: flex-end;
+  align-self: flex-start;
+  text-align: right;
+}
+
+.Timeline_cell:nth-child(odd) {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.Timeline_cell * {
+  margin: 0;
+}
+
+.Timeline_cell h3 {
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+
+/* **************** */
+/* ---- @MEDIA ---- */
+/* **************** */
+
+@media screen and (max-width: 910px) {
+  
+  .Container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5vh;
+  }
+
+  .Container > * {
+    width: clamp(200px, 90%, 500px);
+    grid-column: 1;
+    margin: 5vh 5vw;
+  }
+
+  .Heading {
+    order: 1;
+    margin-bottom: 0;
+  }
+
+  .Legend {
+    order: 2;
+    margin: 0;
+    padding: 0 20px;
+  }
+
+  .Legend p {
+    font-size: 1.05rem;
+    line-height: 22px;
+  }
+
+  .Description {
+    order: 3;
+    margin-bottom: 0px;
+    margin-top: 100px;
+    width: clamp(150px, 70vw, 400px);
+    font-size: 1.15rem;
+  }
+
+  .Description p {
+    
+    font-size: 1.05rem;
+    line-height: 22px;
+  }
+
+  .Cta {
+    margin-bottom: 50px;
+  }
+
+  .Timeline {
+    order: 4;
+    margin-top: 50px;
+    
+    padding: 0;
+    margin: 0;
+  }
+
+  .Timeline_cell:nth-child(even) {
+    padding-left: 0;
+  }
+
+  .Timeline_cell:nth-child(odd) {
+    padding-right: 0;
+  }
+
+  .Timeline_separator {
+    height: 100%;
+  }
+}

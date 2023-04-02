@@ -1,0 +1,123 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 100%;
+  width: 100%;
+  padding: 15vh 0 35px;
+}
+
+/* **************** */
+/* --- HEADING ---- */
+/* **************** */
+
+.Heading {
+  transform: rotate(-2.06deg);
+  width: clamp(260px, 90vw, 800px);
+  padding-left: 10px;
+}
+
+.Heading h2 {
+  max-width: 590px;
+}
+
+.Cta {
+  margin-top: 40px;
+  transform: rotate(2.06deg);
+}
+
+/* **************** */
+/* ---- FOOTER ---- */
+/* **************** */
+
+.Footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.Footer h3 {
+  position: relative;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: var(--neutral-10);
+}
+
+.Footer h3::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  transform: translateX(-100%);
+
+  width: clamp(20px, 10vw, 120px);
+  height: 1px;
+  background-color: var(--neutral-10);
+}
+
+.Footer h3::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  transform: translateX(100%);
+
+  width: clamp(20px, 10vw, 120px);
+  height: 1px;
+  background-color: var(--neutral-10);
+}
+
+.Footer_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 35px;
+}
+
+.Footer_element {
+  position: relative;
+  height: clamp(40px, 20%, 100px);
+  width: 80px;
+}
+
+.Footer_image {
+  object-fit: contain;
+  height: 100% !important;
+  position: relative !important;
+}
+
+/* **************** */
+/* ---- @MEDIA ---- */
+/* **************** */
+
+@media screen and (max-width: 600px) {
+  
+  .Container {
+    padding: 15vh 0 15px;
+  }
+
+  .Heading h1 {
+    font-size: 2.6rem;
+    line-height: 35px;    
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .Heading {
+    position: relative;
+    left: 5vw;
+    width: clamp(260px, 100vw, 800px);
+    transform: translateY(20%), rotate(-2.06deg);
+  }
+  .Heading h1 {
+    font-size: 10vw;
+    line-height: 28px;
+  }
+  .Heading h2 {
+    font-size: 14vw;
+    line-height: 34px;
+  }
+}

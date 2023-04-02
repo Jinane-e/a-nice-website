@@ -1,0 +1,176 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  padding: 25vh 10px 10vh;
+}
+
+/* **************** */
+/* --- HEADING ---- */
+/* **************** */
+
+.Heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(20px, 10%, 50px);
+  width: 100%;
+}
+
+.Heading h1 {
+  text-align: right;
+  width: clamp(250px, 100vw, 500px);
+}
+
+.Heading p {
+  text-align: left;
+  width: clamp(200px, 90vw, 400px);
+}
+
+/* **************** */
+/* --- SERVICES --- */
+/* **************** */
+
+.Services {
+  margin-top: 200px;
+  width: 100%;
+}
+
+.Services_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: clamp(50px, 5%, 80px);
+  position: relative;
+  
+  /* max-width: 1600px; */
+  width: clamp(200px, 95%, 1600px);
+  margin: auto;
+}
+
+.Services_block {
+  width: clamp(200px, 50vw, 300px);
+}
+
+.Services_image {
+  height: 50px;
+  max-width: 50px;
+  position: relative;
+}
+
+.Services_image img {
+  object-fit: contain;
+  width: unset;
+  height: 100% !important;
+}
+
+.Cta {
+  margin-top: 150px;
+}
+
+/* **************** */
+/* ----- STACK ---- */
+/* **************** */
+
+.Stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 160px 30px 0;
+}
+
+.Stack h3 {
+  position: relative;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  color: var(--neutral-10);
+}
+
+.Stack h3::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateX(calc(-100% - 30px));
+
+  width: clamp(20px, 10vw, 120px);
+  height: 1px;
+  background-color: var(--neutral-10);
+}
+
+.Stack h3::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateX(calc(100% + 30px));
+
+  width: clamp(20px, 10vw, 120px);
+  height: 1px;
+  background-color: var(--neutral-10);
+}
+
+.Stack_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  width: clamp(100px, 80vw, 850px);
+}
+
+.Stack_list:nth-child(2) {
+  width: clamp(100px, 80vw, 800px);
+}
+
+.Stack_element {
+  position: relative;
+  height: 40px;
+  max-width: 120px;
+}
+
+.Stack_image {
+  object-fit: contain;
+  position: relative !important;
+  min-height: 30px;
+}
+
+/* **************** */
+/* ---- @MEDIA ---- */
+/* **************** */
+
+@media screen and (max-width: 600px) {
+  
+  .Services {
+    margin-top: 150px;
+  }
+
+  .Services_list {
+    gap: 80px;
+  }
+
+  .Services_block {
+    width: clamp(250px, 70vw, 400px)
+  }
+
+  .Heading {
+    width: clamp(150px, 70vw, 300px);
+    margin: auto;
+  }
+
+  .Heading h1 {
+    text-align: left;
+    font-size: 3.5rem;
+    line-height: 48px;
+  }
+
+  .Stack_list {
+    gap: 60px;
+  }
+  
+  .Stack_element {
+    height: 10px;
+  }
+}

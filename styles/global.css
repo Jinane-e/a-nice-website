@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,200;0,300;0,400;1,300;1,700&family=Playfair+Display:wght@700&family=DM+Sans:ital,wght@0,400;1,700&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  font-family: -apple-system, Montserrat, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--neutral-900);
+  color: var(--neutral-100);
+  z-index: 1;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--pastel-pink);
+}
+
+/* **************** */
+/* ---- DEFAULT --- */
+/* **************** */
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input, textarea {
+  background-color: transparent;
+  border: none;
+  color: var(--neutral-100);
+}
+
+/* **************** */
+/* ---- COLORS ---- */
+/* **************** */
+
+:root {
+  --neutral-100: #EAEBEF;
+  --neutral-10: #EAEBEF44;
+  --neutral-400: #CACBCF;
+  --neutral-40: #CACBCF11;
+  --neutral-800: #1C2227;
+  --neutral-900: #050A11;
+  
+  --primary-100: #8B90FE;
+  --primary-400: #7278FD;
+  --primary-500: #4850ef;
+  --primary-800: #33317E;
+  --primary-900: #0A1027;
+  
+  --pastel-pink: #C1AEF8;
+  --pastel-mint: #01DCDB;
+  --pastel-yellow: #E3EBAE;
+  --pastel-green: #9CD0D5;
+  --pastel-gradient: linear-gradient(90deg, #C1AEF8 0%, #01DCDB 48.14%, #E3EBAE 100%);
+}

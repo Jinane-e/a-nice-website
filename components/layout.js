@@ -98,7 +98,7 @@ export default function Layout({ children, view, onNavigate }) {
           <Image 
             src="/images/backgrounds/noise.png"
             fill 
-            sizes="100vw" 
+            sizes="(max-width: 600px) 100%, 100vw" 
             alt="" 
           />
         </div>

@@ -58,7 +58,7 @@ export default function Services({ currentViewport, onNavigate }) {
 
           {/* CTA TO PORTFOLIO */}
           <div className={styles.Cta}>
-            <Button primary icon="chevron-right" iconWidth={7} onClick={() => onNavigate('Portfolio')}>Exemples</Button>
+            <Button primary icon="chevron-right" iconWidth={7} onClick={() => onNavigate('Portfolio')}>Portfolio</Button>
           </div>
 
           {/* FAVORITE STACK */}

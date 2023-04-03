@@ -94,7 +94,14 @@ export default function Layout({ children, view, onNavigate }) {
       <div>
         <div className={styles.Background_blob}></div>
         <div className={styles.Background_blob}></div>
-        <div className={styles.Background_noise}></div>
+        <div className={styles.Background_noise}>
+          <Image 
+            src="/images/backgrounds/noise.png"
+            fill 
+            sizes="100vw" 
+            alt="" 
+          />
+        </div>
       </div>
 
       <Head>

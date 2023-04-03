@@ -100,6 +100,11 @@
   background-color: var(--neutral-800);
 }
 
+.Gallery_cell a {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 .Gallery_cell:nth-child(odd) {
   margin-left: auto;
 }
@@ -163,6 +168,11 @@
     overflow-x: scroll;
     height: 100%;
     width: 100%;
+    scrollbar-width: none;
+  }
+
+  .Gallery_list::-webkit-scrollbar {
+    display: none;
   }
 
   .Gallery_cell {  

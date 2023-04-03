@@ -6,15 +6,23 @@ import utilStyles from '../styles/utils.module.css'
 
 import aboutData from '/pages/api/portfolio-page.json'
 import { CLOUDINARY_URL } from '../lib/cloudinary'
+import { useEffect, useRef } from 'react'
 
-export default function Portfolio({ onNavigate }) {
+export default function Portfolio({ currentViewport, onNavigate }) {
+  const scrollRef = useRef()
   const content = aboutData.data.attributes
   const projects = content.projects.data
+
+  useEffect(() => {
+    if(currentViewport === 'Portfolio') {
+      scrollRef.current?.scrollTo(0, 0)
+    }
+  }, [currentViewport])
 
   return (
     <section className={utilStyles.Cell_portfolio}>
 
-      <div className={utilStyles.Cell_content}>
+      <div ref={scrollRef} className={utilStyles.Cell_content}>
         
         <div className={styles.Container}>
 
@@ -38,18 +46,24 @@ export default function Portfolio({ onNavigate }) {
 
             <ul className={styles.Gallery_list}>
               {projects?.map(project => {
-                const image = CLOUDINARY_URL + project.attributes.image?.data.attributes.name
+                const image = <Image
+                                src={`${CLOUDINARY_URL}/w_500/${project.attributes.image?.data.attributes.name}`}
+                                fill 
+                                sizes="(max-width: 600px) 400px, 500px" 
+                                alt="screenshot" 
+                                className={styles.Gallery_image}
+                              />
 
                 return (
                   <li key={project.id} className={styles.Gallery_cell}>
                     {project.attributes.link ?
                       <a href={project.attributes.link} target="_blank">
                         <h2 suppressHydrationWarning className={utilStyles.smallTypo}>{project.attributes.legend}</h2>
-                        <Image src={image} fill alt="screenshot" className={styles.Gallery_image} />
+                        {image}
                       </a>
                       : <>
                         <h2 suppressHydrationWarning className={utilStyles.smallTypo}>{project.attributes.legend}</h2>
-                        <Image src={image} fill alt="screenshot" className={styles.Gallery_image} />
+                        {image}
                       </>
                     }
                   </li>

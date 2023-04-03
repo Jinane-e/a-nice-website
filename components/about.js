@@ -5,23 +5,37 @@ import styles from './about.module.css'
 import utilStyles from '../styles/utils.module.css'
 
 import aboutData from '/pages/api/about-page.json'
+import { CLOUDINARY_URL } from '../lib/cloudinary'
+import { useEffect, useRef } from 'react'
 
-export default function About({ onNavigate }) {
+export default function About({ currentViewport, onNavigate }) {
+  const scrollRef = useRef()
   const content = aboutData.data.attributes
   const experiences = content.experiences.data?.reverse()
   const picture = content.picture
 
+  useEffect(() => {
+    if(currentViewport === 'About') {
+      scrollRef.current?.scrollTo(0, 0)
+    }
+  }, [currentViewport])
+
   return (
     <section className={`${utilStyles.Cell_about}`}>
 
-      <div className={utilStyles.Cell_content}>
+      <div ref={scrollRef} className={utilStyles.Cell_content}>
         
         <div className={styles.Container}>
           
           {/* HEADING */}
           <article className={styles.Heading}>
             <h1 className={utilStyles.mediumHeading}>{content.title}</h1>
-            <Image src={`https://res.cloudinary.com/dzwcje2w1/image/upload/${picture?.data.attributes.name}`} alt='me' fill className={styles.Heading_image} />
+            <Image 
+              src={`${CLOUDINARY_URL}/w_500/${picture?.data.attributes.name}`} 
+              alt='me' 
+              sizes="(max-width: 600px) 100vw, (max-width: 910px) 500px, 400px" 
+              fill 
+              className={styles.Heading_image} />
           </article>
 
           {/* LEGEND BELOW PICTURE */}

@@ -6,17 +6,25 @@ import utilStyles from '../styles/utils.module.css'
 
 import servicesData from '/pages/api/services-page.json'
 import { CLOUDINARY_URL } from '../lib/cloudinary'
+import { useEffect, useRef } from 'react'
 
-export default function Services({ onNavigate }) {
+export default function Services({ currentViewport, onNavigate }) {
   const content = servicesData.data.attributes
   const services = content.services?.data
   const firstStack = content.firstStack?.data
   const secondStack = content.secondStack?.data
+  const scrollRef = useRef()
+
+  useEffect(() => {
+    if(currentViewport === 'Services') {
+      scrollRef.current?.scrollTo(0, 0)
+    }
+  }, [currentViewport])
 
   return (
     <section className={utilStyles.Cell_services}>
 
-      <div className={utilStyles.Cell_content}>
+      <div ref={scrollRef} className={utilStyles.Cell_content}>
         
         <div className={styles.Container}>
           
@@ -33,7 +41,12 @@ export default function Services({ onNavigate }) {
               {services?.map(service => 
                 <li key={service.id} className={styles.Services_block}>
                   <div className={styles.Services_image}>
-                    <Image src={CLOUDINARY_URL+service.attributes.icon.data.attributes.name} fill alt="devices" />
+                    <Image 
+                      src={`${CLOUDINARY_URL}/w_50/${service.attributes.icon.data.attributes.name}`} 
+                      fill 
+                      sizes="50px" 
+                      alt="" 
+                    />
                   </div>
                   
                   <h2 className={utilStyles.specialHeading}>{service.attributes.name}</h2>
@@ -55,7 +68,13 @@ export default function Services({ onNavigate }) {
             <ul className={styles.Stack_list}>
               {firstStack.map(techno => 
                 <li key={techno.id} className={styles.Stack_element}>
-                  <Image className={styles.Stack_image} src={CLOUDINARY_URL+techno.attributes.name} fill alt={techno.attributes.name.split('.')[0]} />
+                  <Image 
+                    className={styles.Stack_image} 
+                    src={`${CLOUDINARY_URL}/h_40/${techno.attributes.name}`} 
+                    fill 
+                    sizes="150px" 
+                    alt={techno.attributes.name.split('.')[0]} 
+                  />
                 </li>
               )}
             </ul>
@@ -68,7 +87,13 @@ export default function Services({ onNavigate }) {
             <ul className={styles.Stack_list}>
               {secondStack.map(techno => 
                 <li key={techno.id} className={styles.Stack_element}>
-                  <Image className={styles.Stack_image} src={CLOUDINARY_URL+techno.attributes.name} fill alt="" />
+                  <Image 
+                    className={styles.Stack_image} 
+                    src={`${CLOUDINARY_URL}/h_40/${techno.attributes.name}`} 
+                    fill 
+                    sizes="150px" 
+                    alt={techno.attributes.name.split('.')[0]} 
+                  />
                 </li>
               )}
             </ul>

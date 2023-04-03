@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Button from './button'
 import Input from './input'
 
@@ -14,7 +14,8 @@ const encode = (data) => {
     .join("&");
 }
 
-export default function Contact() {
+export default function Contact({ currentViewport }) {
+  const scrollRef = useRef()
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
@@ -24,6 +25,12 @@ export default function Contact() {
   const mailRegex = /(\w+\.?|-?\w+?)+@\w+\.?-?\w+?(\.\w{2,3})+/g
 
   const content = contactData.data.attributes
+
+  useEffect(() => {
+    if(currentViewport === 'Contact') {
+      scrollRef.current?.scrollTo(0, 0)
+    }
+  }, [currentViewport])
 
   const handleSend = (e) => {
     e.preventDefault()
@@ -68,7 +75,7 @@ export default function Contact() {
 
   return (
     <section className={`${utilStyles.Cell_contact}`}>
-      <div className={utilStyles.Cell_content}>
+      <div ref={scrollRef} className={utilStyles.Cell_content}>
         
         <div className={styles.Container}>
           

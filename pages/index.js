@@ -7,7 +7,7 @@ import About from '../components/about'
 import Services from '../components/services'
 import Portfolio from '../components/portfolio'
 import Contact from '../components/contact'
-import { getAboutData, getContactData, getGlobalData, getHomeData, getPortfolioData, getServicesData } from '../lib/api'
+// import { getAboutData, getContactData, getGlobalData, getHomeData, getPortfolioData, getServicesData } from '../lib/api'
 
 export default function SinglePage() {
   const [view, setView] = useState('Home')
@@ -22,11 +22,11 @@ export default function SinglePage() {
         <title>{siteTitle}</title>
       </Head>
       
-      <Home onNavigate={setView} />
-      <About onNavigate={setView} />
-      <Services onNavigate={setView} />
-      <Portfolio onNavigate={setView} />
-      <Contact onNavigate={setView} />
+      <Home currentViewport={view} onNavigate={setView} />
+      <About currentViewport={view} onNavigate={setView} />
+      <Services currentViewport={view} onNavigate={setView} />
+      <Portfolio currentViewport={view} onNavigate={setView} />
+      <Contact currentViewport={view} onNavigate={setView} />
 
     </Layout>
   )

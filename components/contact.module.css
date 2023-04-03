@@ -67,10 +67,15 @@
     transform: translateX(0);
   }
   90% {
-    transform: scale(1) translateX(300px);
+    transform: scale(1) translateX(500px);
+  }
+  95% {
+    transform: scale(1) translateX(500px);
+    opacity: 0;
   }
   100% {
-    transform: scale(0) translateX(300px);
+    transform: scale(0) translateX(500px);
+    opacity: 0;
   }
 }
 

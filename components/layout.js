@@ -152,11 +152,7 @@ export default function Layout({ children, view, onNavigate }) {
           
           <div className={styles.Header_cta}>
             <Button primary icon="chevron-right" iconWidth={6} iconHeight={12} onClick={() => onNavigate("Contact")}>Contact</Button>
-          </div>
-
-          <div className={styles.Header_cta__responsive}>
-            <Button primary onClick={() => onNavigate("Contact")}>Contact</Button>
-          </div>
+          </div>          
         </header>
 
         {/* LEFT BAR */}
@@ -178,7 +174,9 @@ export default function Layout({ children, view, onNavigate }) {
 
           <div className={styles.Footer_separator}></div>
 
-          <p className={`${styles.Footer_credits} ${utilStyles.smallTypo}`}>{content.credits}</p>
+          <div className={`${styles.Footer_credits} ${utilStyles.smallTypo}`}>
+            <p>{content.credits}</p>
+          </div>
         </footer>
 
         <div className={clsx({
@@ -195,6 +193,10 @@ export default function Layout({ children, view, onNavigate }) {
             width={64}
           />
         </button>
+
+        {/* <div className={`${utilStyles.max600} ${styles.Cta__responsive}`}>
+          <Button fill primary onClick={() => onNavigate("Contact")}>Contact</Button>
+        </div> */}
 
         {/* MENU HAMBURGER FOR MOBILE */}
         <Hamburger active={menuActive} onClick={() => setMenuActive(!menuActive)} />

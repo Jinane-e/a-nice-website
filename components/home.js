@@ -1,11 +1,10 @@
 import Image from 'next/image'
 import Button from './button'
-import { getImagePath } from '../lib/api'
-
 import styles from './home.module.css'
 import utilStyles from '../styles/utils.module.css'
 
 import homeData from '/pages/api/home-page.json'
+import { CLOUDINARY_URL } from '../lib/cloudinary'
 
 export default function Home({ onNavigate }) {
   const content = homeData.data.attributes
@@ -37,7 +36,13 @@ export default function Home({ onNavigate }) {
             <ul className={styles.Footer_list}>
               {stack.map(techno => 
                 <li key={techno.id} className={styles.Footer_element}>
-                  <Image className={styles.Footer_image} src={getImagePath(techno.attributes.url)} fill alt={techno.attributes.name.split('.')[0]} />
+                  <Image 
+                    className={styles.Footer_image} 
+                    src={`${CLOUDINARY_URL}/w_80/${techno.attributes.name}`} 
+                    fill
+                    sizes="80px" 
+                    alt={techno.attributes.name.split('.')[0]} 
+                  />
                 </li>
               )}
             </ul>

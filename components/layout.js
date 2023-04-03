@@ -9,6 +9,7 @@ import IconButton from './iconButton'
 import styles from './layout.module.scss'
 import utilStyles from '../styles/utils.module.css'
 
+import { CLOUDINARY_URL } from '../lib/cloudinary'
 import globalData from '/pages/api/global.json'
 
 const name = 'Jinane'
@@ -96,9 +97,9 @@ export default function Layout({ children, view, onNavigate }) {
         <div className={styles.Background_blob}></div>
         <div className={styles.Background_noise}>
           <Image 
-            src="/images/backgrounds/noise.png"
-            fill 
-            sizes="(max-width: 600px) 100%, 100vw" 
+            src={`${CLOUDINARY_URL}/noisy_background.png`}
+            fill
+            sizes="(max-width: 600px) 600px, 100vw" 
             alt="" 
           />
         </div>

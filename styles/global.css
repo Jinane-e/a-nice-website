@@ -20,20 +20,36 @@ body {
   scrollbar-width: thin;
   scrollbar-color: var(--pastel-pink);
   scroll-behavior: smooth;
+
+  
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-  background-color: var(--neutral-800);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--neutral-10);
-  -webkit-border-radius: 1ex;
-  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
-}
+* {
+  /* Styles pour les navigateurs basés sur Webkit (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 6px;  /* Largeur de la scrollbar */
+    height: 6px; /* Hauteur de la scrollbar pour le défilement horizontal */
+  }
 
-::-webkit-scrollbar-corner {
-  background: #000;
+  ::-webkit-scrollbar-track {
+    background: #1a1a1a;  /* Couleur du fond de la scrollbar */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8e44ad, #0097fc); /* Dégradé violet */
+    border-radius: 10px;      /* Arrondi des coins */
+    border: 1px solid #333;   /* Bordure subtile */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #9b59b6, #039aff); /* Dégradé plus clair au survol */
+  }
+
+  /* Pour Firefox */
+  scrollbar-width: thin;       /* Largeur fine de la scrollbar */
+  scrollbar-color: #8e44ad #1a1a1a; /* Couleur du pouce et de la track (fond) */
+
+
 }
 
 /* **************** */

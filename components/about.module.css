@@ -38,7 +38,7 @@
 
   width: clamp(200px, 40vw, 800px);
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
   z-index: 1;
 }
 
@@ -61,7 +61,7 @@
 }
 
 .Description p {  
-  text-align: justify;
+  text-align: left;
 }
 
 .Cta {
